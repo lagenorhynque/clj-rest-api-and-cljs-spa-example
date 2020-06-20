@@ -55,7 +55,8 @@
   duct.database.sql.Boundary
   (find-todos [db]
     (sql/query (->connectable db)
-               ["SELECT id, task FROM todo"] jdbc-opts))
+               ["SELECT id, task FROM todo ORDER BY id ASC"]
+               jdbc-opts))
   (find-todo-by-id [db id]
     (sql/get-by-id (->connectable db)
                    :todo id jdbc-opts))
