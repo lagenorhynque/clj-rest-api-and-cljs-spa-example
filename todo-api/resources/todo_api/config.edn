@@ -5,7 +5,12 @@
   :todo-api.handler.todo/create-todo {:db #ig/ref :duct.database/sql}
   :todo-api.handler.todo/fetch-todo {:db #ig/ref :duct.database/sql}
   :todo-api.handler.todo/delete-todo {:db #ig/ref :duct.database/sql}
-  :todo-api.handler.todo/update-todo {:db #ig/ref :duct.database/sql}}
+  :todo-api.handler.todo/update-todo {:db #ig/ref :duct.database/sql}
+
+  :duct.migrator/ragtime
+  {:migrations #ig/ref :duct.migrator.ragtime/resources}
+  :duct.migrator.ragtime/resources
+  {:path "migrations"}}
 
  :duct.profile/dev   #duct/include "dev"
  :duct.profile/local #duct/include "local"
