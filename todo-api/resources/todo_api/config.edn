@@ -1,18 +1,24 @@
 {:duct.profile/base
  {:duct.core/project-ns todo-api
 
-  :duct.router/ataraxy
-  {:routes {[:get "/example"] [:todo-api.handler/example]}}
-
-  :todo-api.handler/example
-  {:db #ig/ref :duct.database/sql}}
+  :todo-api.handler.todo/list-todos {:db #ig/ref :duct.database/sql}
+  :todo-api.handler.todo/create-todo {:db #ig/ref :duct.database/sql}
+  :todo-api.handler.todo/fetch-todo {:db #ig/ref :duct.database/sql}
+  :todo-api.handler.todo/delete-todo {:db #ig/ref :duct.database/sql}
+  :todo-api.handler.todo/update-todo {:db #ig/ref :duct.database/sql}}
 
  :duct.profile/dev   #duct/include "dev"
  :duct.profile/local #duct/include "local"
  :duct.profile/prod  {}
 
+ :duct.module/ataraxy
+ {"/todos"
+  {:get [:todo/list-todos]
+   [:post {todo :body-params}] [:todo/create-todo todo]
+   ["/" todo-id]
+   {:get [:todo/fetch-todo ^int todo-id]
+    :delete [:todo/delete-todo ^int todo-id]
+    [:put {todo :body-params}] [:todo/update-todo ^int todo-id todo]}}}
  :duct.module/logging {}
- :duct.module.web/api
- {}
- :duct.module/sql
- {}}
+ :duct.module.web/api {}
+ :duct.module/sql {}}
