@@ -8,7 +8,8 @@
                  [duct/module.sql "0.6.0"]
                  [duct/module.web "0.7.0"]
                  [org.clojure/clojure "1.10.1"]
-                 [org.postgresql/postgresql "42.2.14"]]
+                 [org.postgresql/postgresql "42.2.14"]
+                 [seancorfield/next.jdbc "1.0.462"]]
   :plugins [[duct/lein-duct "0.12.1"]]
   :main ^:skip-aot todo-api.main
   :resource-paths ["resources" "target/resources"]
@@ -26,7 +27,8 @@
                                    [fipp "0.6.23"]
                                    [hawk "0.2.11"]
                                    [integrant/repl "0.3.1"]
-                                   [kerodon "0.9.1"]]
+                                   [kerodon "0.9.1"]
+                                   [orchestra "2019.02.06-1"]]
                   :aliases {"db-migrate" ^{:doc "Migrate DB to the latest migration."}
                             ["run" "-m" "dev/db-migrate"]
                             "db-rollback" ^{:doc "Rollback DB one migration."}
