@@ -8,5 +8,7 @@
         "create" :todo-app.views/create
         [[ #"\d+" :id ] "/edit"] :todo-app.views/edit}])
 
-(defn navigate [view]
-  (accountant/navigate! (bidi/path-for routes view)))
+(defn navigate
+  ([view] (navigate view {}))
+  ([view params]
+   (accountant/navigate! (apply bidi/path-for routes view (apply concat params)))))

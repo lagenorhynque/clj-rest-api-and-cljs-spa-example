@@ -10,3 +10,8 @@
  ::todos
  (fn [db _]
    (:todos db)))
+
+(re-frame/reg-sub
+ ::selected-todo
+ (fn [db _]
+   (:selected-todo db)))
