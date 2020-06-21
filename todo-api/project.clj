@@ -9,6 +9,7 @@
                  [duct/module.web "0.7.0"]
                  [org.clojure/clojure "1.10.1"]
                  [org.postgresql/postgresql "42.2.14"]
+                 [ring-cors "0.1.13"]
                  [seancorfield/next.jdbc "1.0.462"]]
   :plugins [[duct/lein-duct "0.12.1"]]
   :main ^:skip-aot todo-api.main

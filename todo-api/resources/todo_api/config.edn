@@ -7,6 +7,13 @@
   :todo-api.handler.todo/delete-todo {:db #ig/ref :duct.database/sql}
   :todo-api.handler.todo/update-todo {:db #ig/ref :duct.database/sql}
 
+  :todo-api.middleware/wrap-cors
+  {:access-control-allow-origin [#todo-api/regex ".*"]
+   :access-control-allow-methods [:get :put :post :delete]}
+
+  :duct.handler/root
+  {:middleware [#ig/ref :todo-api.middleware/wrap-cors]}
+
   :duct.migrator/ragtime
   {:migrations #ig/ref :duct.migrator.ragtime/resources}
   :duct.migrator.ragtime/resources

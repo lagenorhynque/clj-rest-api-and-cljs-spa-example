@@ -1,5 +1,6 @@
 (ns todo-app.views
   (:require [re-frame.core :as re-frame]
+            [todo-app.events :as events]
             [todo-app.subs :as subs]))
 
 (defmulti view :handler)
@@ -8,7 +9,12 @@
   [:div "Home"])
 
 (defmethod view ::list [_]
-  [:div "Todo List"])
+  (re-frame/dispatch [::events/fetch-todos])
+  [:div "Todo List"
+   [:ul
+    (map (fn [{:keys [id task]}]
+           [:li {:key id} task])
+         @(re-frame/subscribe [::subs/todos]))]])
 
 (defmethod view ::create [_]
   [:div "Create New Todo"])

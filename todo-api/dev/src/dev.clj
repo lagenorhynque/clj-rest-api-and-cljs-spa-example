@@ -12,12 +12,14 @@
             [integrant.repl.state :refer [config system]]
             [ragtime.jdbc]
             [ragtime.repl]
-            [orchestra.spec.test :as stest]))
+            [orchestra.spec.test :as stest]
+            [todo-api.main :refer [custom-readers]]))
 
 (duct/load-hierarchy)
 
 (defn read-config []
-  (duct/read-config (io/resource "todo_api/config.edn")))
+  (duct/read-config (io/resource "todo_api/config.edn")
+                    custom-readers))
 
 (defn reset []
   (let [result (integrant.repl/reset)]
