@@ -1,26 +1,42 @@
 # todo-api
 
-FIXME: description
+Todo API, an example REST API based on [Duct](https://github.com/duct-framework/duct).
 
-## Developing
+## Prerequisites
+
+- [Java (JDK)](http://openjdk.java.net/)
+    - `java -version` >= 8 (1.8.0)
+- [Leiningen](https://leiningen.org/)
+- [Docker](https://www.docker.com/)
+
+## Development
 
 ### Setup
 
 When you first clone this repository, run:
 
 ```sh
-lein duct setup
+$ lein duct setup
 ```
 
 This will create files for local configuration, and prep your system
 for the project.
 
-### Environment
+### Start and migrate database
+
+```sh
+# Start local DB
+$ docker-compose up -d
+# Migrate local DB
+$ lein db-migrate dev
+```
+
+### Run
 
 To begin developing, start with a REPL.
 
 ```sh
-lein repl
+$ lein repl
 ```
 
 Then load the development environment.
@@ -38,7 +54,7 @@ dev=> (go)
 :initiated
 ```
 
-By default this creates a web server at <http://localhost:3000>.
+By default this creates a API server at <http://localhost:3000>.
 
 When you make changes to your source files, use `reset` to reload any
 modified files and reset the server.
@@ -49,22 +65,22 @@ dev=> (reset)
 :resumed
 ```
 
-### Testing
+## Production
 
-Testing is fastest through the REPL, as you avoid environment startup
-time.
-
-```clojure
-dev=> (test)
-...
-```
-
-But you can also run tests through Leiningen.
+### Build
 
 ```sh
-lein test
+$ lein uberjar
 ```
 
-## Legal
+### Migrate database
 
-Copyright © 2020 FIXME
+```sh
+$ DATABASE_URL='jdbc:postgresql://localhost:5432/todo?user=dev&password=pass' java -jar target/todo-api.jar :duct/migrator
+```
+
+### Run
+
+```sh
+$ PORT=3000 DATABASE_URL='jdbc:postgresql://localhost:5432/todo?user=dev&password=pass' java -jar target/todo-api.jar
+```

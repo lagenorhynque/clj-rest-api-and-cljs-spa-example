@@ -1,4 +1,4 @@
-(defproject todo-api "0.1.0-SNAPSHOT"
+(defproject todo-api "0.1.0"
   :description "Todo API"
   :url "https://github.com/lagenorhynque/clj-rest-api-and-cljs-spa-example"
   :min-lein-version "2.0.0"
@@ -20,7 +20,8 @@
   {:dev  [:project/dev :profiles/dev]
    :repl {:prep-tasks   ^:replace ["javac" "compile"]
           :repl-options {:init-ns user}}
-   :uberjar {:aot :all}
+   :uberjar {:aot :all
+             :uberjar-name "todo-api.jar"}
    :profiles/dev {}
    :project/dev  {:source-paths   ["dev/src"]
                   :resource-paths ["dev/resources"]
