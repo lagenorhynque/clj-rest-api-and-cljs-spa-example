@@ -15,3 +15,13 @@
  ::selected-todo
  (fn [db _]
    (:selected-todo db)))
+
+(re-frame/reg-sub
+ ::delete-dialog-open?
+ (fn [db _]
+   (some? (:delete-dialog db))))
+
+(re-frame/reg-sub
+ ::delete-target
+ (fn [db _]
+   (get-in db [:delete-dialog :todo-id])))

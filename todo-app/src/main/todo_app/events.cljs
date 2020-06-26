@@ -98,3 +98,13 @@
                        :uri (str config/API_URL "/todos/" todo-id)
                        :format (ajax/json-request-format)
                        :on-success [::fetch-todos])}))
+
+(re-frame/reg-event-db
+ ::open-delete-dialog
+ (fn [db [_ todo-id]]
+   (assoc db :delete-dialog {:todo-id todo-id})))
+
+(re-frame/reg-event-db
+ ::close-delete-dialog
+ (fn [db _]
+   (assoc db :delete-dialog nil)))
