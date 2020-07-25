@@ -10,7 +10,7 @@
                  [org.clojure/clojure "1.10.1"]
                  [org.postgresql/postgresql "42.2.14"]
                  [ring-cors "0.1.13"]
-                 [seancorfield/next.jdbc "1.0.462"]]
+                 [seancorfield/next.jdbc "1.1.569"]]
   :plugins [[duct/lein-duct "0.12.1"]]
   :main ^:skip-aot todo-api.main
   :resource-paths ["resources" "target/resources"]
@@ -30,7 +30,7 @@
                                    [hawk "0.2.11"]
                                    [integrant/repl "0.3.1"]
                                    [kerodon "0.9.1"]
-                                   [orchestra "2019.02.06-1"]]
+                                   [orchestra "2020.07.12-1"]]
                   :aliases {"db-migrate" ^{:doc "Migrate DB to the latest migration."}
                             ["run" "-m" "dev/db-migrate"]
                             "db-rollback" ^{:doc "Rollback DB one migration."}
